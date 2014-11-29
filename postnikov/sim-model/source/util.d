@@ -40,3 +40,14 @@ double mean(double[] arr)
     foreach(val; arr) temp += val;
     return temp / arr.length;
 }
+
+TickDuration minStamp(T)(T[string] tics)
+{
+    TickDuration res = tics[tics.keys[0]].startStamp;
+    foreach(k;tics.keys)
+    {
+        if(res>tics[k].startStamp)
+            res=tics[k].startStamp;
+    }
+    return res;
+}

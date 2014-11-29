@@ -8,14 +8,18 @@ struct Input
 {
     size_t wokrstationsCount;
     size_t serversCount;
+    size_t cpusCount;
+    size_t discsCount;
     double afterProcessTime;
     double queringProcessTime;
     double responseProcessTime;
     double sendingProcessTime;
+    double responseDiscTime;
+    double requestProbability;
     
     static void genExample(string filename)
     {
-        auto example = Input(8, 2, 80, 80, 10, 10).serializeToJson;
+        auto example = Input(8, 2, 2, 3, 80, 80, 10, 10, 10, 0.3).serializeToJson;
         auto builder = appender!string;
         
         writePrettyJsonString(builder, example);
@@ -33,6 +37,8 @@ struct Output
     double cableLoad;
     double serverLoad;
     double userLoad;
+    double discLoad;
+    double cpuLoad;
     
     void save(string filename)
     {
